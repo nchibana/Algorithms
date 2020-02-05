@@ -3,7 +3,18 @@
 import math
 
 def recipe_batches(recipe, ingredients):
-  pass 
+  batches = 0
+  if len(recipe.values()) > len(ingredients.values()):
+    batches = 0
+  else:
+    product = [i // j for i, j in zip(ingredients.values(), recipe.values())]
+    curr_index = 0
+    min_index = curr_index
+    for i in range(len(product)-1):
+      if product[curr_index + 1] < product[min_index]:
+        min_index = curr_index + 1
+    batches = product[min_index]
+  return batches
 
 
 if __name__ == '__main__':
